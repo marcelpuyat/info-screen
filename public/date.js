@@ -19,8 +19,8 @@ $(document).ready(function() {
 		var dayOfWeek = weekDayNames[currDate.getDay()];
 		console.log(month, date, dayOfWeek);
 
-		$("#date-text").text(month + " " + date);
-		$("#day-text").text(dayOfWeek);
+		// $("#date-text").text(month + " " + date);
+		// $("#day-text").text(dayOfWeek);
 
 		// Call all new day listeners
 		for (var i = 0; i < newDayListeners.length; i++) {
@@ -34,8 +34,8 @@ $(document).ready(function() {
 		var hourToDisplay = currTime.getHours() % 12;
 		if (hourToDisplay == 0) hourToDisplay = 12;
 
-		$("#time-text").text(pad(hourToDisplay, 2) + ":" + pad(currTime.getMinutes(), 2));
-		$("#am-pm-text").text(currTime.getHours() < 12 ? "AM" : "PM");
+		// $("#time-text").text(pad(hourToDisplay, 2) + ":" + pad(currTime.getMinutes(), 2));
+		// $("#am-pm-text").text(currTime.getHours() < 12 ? "AM" : "PM");
 	}
 
 	var numMillisInMinute = 1000 * 60;

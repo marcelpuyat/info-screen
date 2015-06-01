@@ -1,11 +1,11 @@
 $(document).ready(function() {
 	var state = "CA";
 	var city = "San Mateo";
-	var minsPerCall = 5;
+	var minsPerCall = 10;
 
 	var updateTemperatureColors = function() {
 		$('.temp-number').each(function() {
-			$(this).css('color', 'rgba(232, 232, 232, 0.85'); // First, reset
+			$(this).css('color', 'rgba(232, 232, 232, 0.95'); // First, reset
 			var colorStringSplit = $(this).css('color').split(',');
 			var red = parseInt(colorStringSplit[0].match(/\d+$/)[0]);
 			var green = parseInt(colorStringSplit[1].match(/\d+$/)[0]);
@@ -41,14 +41,14 @@ $(document).ready(function() {
 	            var probOfRain = forecastObject.pop;
 	            var forecastAsSimpleText = responseData.forecast.txt_forecast.forecastday[0].fcttext.split(".")[0];
 
-	            $("#high-text").text(highFahrenheitAsString + "\xB0");
-	            $("#low-text").text(lowFahrenheitAsString + "\xB0");
-	            $("#wind-text").text(windMph);
-	            $("chance-of-rain-text").text(probOfRain);
-	            $("forecast-text").text(forecastAsSimpleText);
-	            $("conditions-icon").attr("src", conditionsIconUrl);
+	            // $("#high-text").text(highFahrenheitAsString + "\xB0");
+	            // $("#low-text").text(lowFahrenheitAsString + "\xB0");
+	            // $("#wind-text").text(windMph);
+	            // $("chance-of-rain-text").text(probOfRain);
+	            // $("forecast-text").text(forecastAsSimpleText);
+	            // $("conditions-icon").attr("src", conditionsIconUrl);
 
-	            updateTemperatureColors();
+	            // updateTemperatureColors();
 
 	            console.log(windMph, highFahrenheitAsString, lowFahrenheitAsString, conditionsIconUrl, probOfRain, forecastAsSimpleText);
 	        }
@@ -59,8 +59,8 @@ $(document).ready(function() {
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
 	        	var currTempFahrenheit = responseData.current_observation.feelslike_f;
-	        	$("#current-temp-text").text(Math.floor(currTempFahrenheit) + "\xB0");
-	        	updateTemperatureColors();
+	        	// $("#current-temp-text").text(Math.floor(currTempFahrenheit) + "\xB0");
+	        	// updateTemperatureColors();
 	        	console.log("Feels like: " + currTempFahrenheit);
 	        }
 	    });

@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="/styles/calendar.css"></link>
         <link rel="stylesheet" href="/styles/background_image.css"></link>
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="/scripts/jquery-1.11.3.min.js"></script>
+        <script src="/scripts/main.js"></script>
         <script src="/scripts/date.js"></script>
         <script src="/scripts/weather.js"></script>
         <script src="/scripts/calendar.js"></script>
@@ -28,39 +29,31 @@
             </div>
         </div>
 
-        <div id="weather" class="main-section">
-            <div id="high">
-                <h1 id="high-text" class="temp-number"></h1>
-            </div>
-            <div id="low">
-                <h1 id="low-text" class="temp-number"></h1>
-            </div>
-            <div id="current-temp">
-                <h1 id="current-temp-text" class="temp-number"></h1>
-            </div>
-            <div id="wind">
-                <div id="wind-inner">
-                    <h1 id="wind-text">4</h1>
+        <div id="right-half-outer">
+            <div class="right-half-screen">
+                <div class="upper-half">
+                    <div class="vertical-inline-parent">
+                        <p>Temperate 1</p>
+                    </div>
                 </div>
-                <div id="mph-inner">
-                    <h1 id="mph-text">mph</h1>
+                <div class="lower-half">
+                    <div class="vertical-inline-parent">
+                        <p>Temperature 2</p>
+                    </div>
                 </div>
             </div>
-            <div id="chance-of-rain">
-                <div id="chance-of-rain-inner">
-                    <h1 id="chance-of-rain-text">10%</h1>
+            <div class="right-half-screen">
+                <div class="vertical-inline-parent">
+                    <p>Movies</p>
                 </div>
-                <div id="rain-inner">
-                    <h1 id="rain-text">rain</h1>
+            </div>
+            <div class="right-half-screen">
+                <div class="vertical-inline-parent">
+                    <p>NBA News</p>
                 </div>
             </div>
         </div>
 
-        <div id="calendar" class="main-section">
-        </div>
-
-        <div id="transit" class="main-section">
-        </div>
 
         <div id="background">
             <div id="old" class="background"></div>
