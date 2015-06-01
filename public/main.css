@@ -1,12 +1,17 @@
+@font-face {
+	font-family: HelveticaNeue; src: url('/fonts/HelveticaNeue.ttf');
+}
+
 .background {
 	z-index: -1;
 }
+
 body, html {
 	padding: 0;
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	font-family: Helvetica;
+	font-family: HelveticaNeue;
 }
 
 #right-half-outer {
