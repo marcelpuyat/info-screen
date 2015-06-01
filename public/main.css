@@ -1,0 +1,37 @@
+.main-section {
+	/*border: 2px solid white;*/
+}
+
+h1, h2, h3, h4, p {
+	color: rgba(232, 232, 232, 0.85);
+	font-family: Helvetica;
+	display: inline-block;
+}
+
+#date {
+	position: absolute;
+	top: 0;
+	left: 1.2vw;
+	width: 52.3vw;
+	height: 39.75vh;
+}
+
+#weather {
+	position: absolute;
+	top: 39.75vh;
+	left: 1.2vw;
+	width: 52.3vw;
+	height: 34.75vh;
+}
+
+#calendar {
+	position: absolute;
+	top: 0;
+	left: 52.3vw;
+	width: 47.7vw;
+	height: 74.5vh;
+}
+
+.background {
+	z-index: -1;
+}

@@ -1,0 +1,21 @@
+.background { 
+	position: absolute;
+	width:100%;
+	height:100%;
+	background-repeat: 'no-repeat';
+	background-position: 50% 50%;
+	background-size: cover; 
+}
+
+#old {
+	opacity: 1.0;
+	background-image: url(/images/first_bg.jpg);
+}
+
+#new {
+	opacity: 0.0;
+}
+
+body {
+	margin: 0;
+}

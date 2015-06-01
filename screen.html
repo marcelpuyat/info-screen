@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <link rel="stylesheet" href="/styles/date.css"></link>
+        <link rel="stylesheet" href="/styles/weather.css"></link>
+        <link rel="stylesheet" href="/styles/calendar.css"></link>
+        <link rel="stylesheet" href="/styles/background_image.css"></link>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="/scripts/date.js"></script>
+        <script src="/scripts/weather.js"></script>
+        <script src="/scripts/calendar.js"></script>
+        <script src="/scripts/background_image.js"></script>
+
+    </head>
+    <body>
+
+        <div id="date" class="main-section">
+            <div id="date-and-month">
+                <h1 id="date-text"></h1>
+            </div>
+            <div id="day">
+                <h1 id="day-text"></h1>
+            </div>
+            <div id="time">
+                <h1 id="time-text"></h1>
+                <h4 id="am-pm-text"></h4>
+            </div>
+        </div>
+
+        <div id="weather" class="main-section">
+            <div id="high">
+                <h1 id="high-text" class="temp-number"></h1>
+            </div>
+            <div id="low">
+                <h1 id="low-text" class="temp-number"></h1>
+            </div>
+            <div id="current-temp">
+                <h1 id="current-temp-text" class="temp-number"></h1>
+            </div>
+            <div id="wind">
+                <div id="wind-inner">
+                    <h1 id="wind-text">4</h1>
+                </div>
+                <div id="mph-inner">
+                    <h1 id="mph-text">mph</h1>
+                </div>
+            </div>
+            <div id="chance-of-rain">
+                <div id="chance-of-rain-inner">
+                    <h1 id="chance-of-rain-text">10%</h1>
+                </div>
+                <div id="rain-inner">
+                    <h1 id="rain-text">rain</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="calendar" class="main-section">
+        </div>
+
+        <div id="transit" class="main-section">
+        </div>
+
+        <div id="background">
+            <div id="old" class="background"></div>
+            <div id="new" class="background"></div>
+        </div>
+
+    </body>
+</html>

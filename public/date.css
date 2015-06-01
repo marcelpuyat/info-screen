@@ -1,0 +1,40 @@
+#day, #date-and-month, #time {
+	display: inline-block;
+	position: absolute;
+	transform: translateY(-50%);
+}
+
+#day, #date-and-month {
+	margin: auto;
+	width: 20%;
+	text-align: center;
+	font-size: 1.8vw;
+}
+
+#date-and-month {
+	top: 30%;
+}
+
+#day {
+	top: 70%;
+}
+
+#time {
+	white-space: nowrap;
+	left: 23%;
+	top: 50%;
+	width: 77%;
+}
+
+#time-text {
+	font-size: 14.5vw;
+	width: 85%;
+}
+
+#am-pm-text {
+	font-size: 1.5vw;
+	position: relative;
+	left: 0.75vw;
+	width: 15%;
+	text-align: center;
+}
