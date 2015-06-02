@@ -16,15 +16,16 @@
 	vertical-align: middle;
 }
 
-#high-text, #low-text {
-	font-size: 5.5vw;
+#high-text, #low-text, #wind-text, #chance-of-rain-text {
+	font-size: 7vw;
 	position: relative;
-	left: 2.5vw;
+}
+
+#high-text, #low-text {
+	left: 1.5vw;
 }
 
 #wind-text, #chance-of-rain-text {
-	font-size: 5.5vw;
-	position: relative;
 	right: 3.5vw;
 }
 
@@ -41,7 +42,7 @@
 }
 
 #current-temp-text {
-	font-size: 16vw;
+	font-size: 16.5vw;
 }
 
 #weather-lower-half {
