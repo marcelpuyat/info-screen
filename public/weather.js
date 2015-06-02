@@ -4,23 +4,41 @@ $(document).ready(function() {
 	var minsPerForecastCall = 10;
 	var minsPerCurrTempCall = 5;
 
-	// See https://developer.forecast.io/docs/v2#forecast_call
-	var conditionsToIconMap = {
-		"clear-day": "/images/weather/clear-day.png",
-		"clear-night": "/images/weather/clear-night.png",
+	// See http://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary
+	var conditionsToDayIconMap = {
+		"clear": "/images/weather/clear-day.png",
+		"sunny": "/images/weather/clear-day.png",
 		"rain": "/images/weather/rain.png",
+		"chancerain": "/images/weather/chance-rain-day.png",
 		"snow" : "/images/weather/snow.png",
+		"chanceflurries" : "/images/weather/snow.png",
+		"flurries" : "/images/weather/snow.png",
 		"sleet": "/images/weather/snow.png",
+		"chancesleet": "/images/weather/snow.png",
+		"chancesnow": "/images/weather/snow.png",
 		"wind" : "/images/weather/wind.png",
 		"fog": "/images/weather/fog.png",
-		"cloudy": "/images/weather/fog.png",
-		"partly-cloudy-day": "/images/weather/partly-cloudy-day.png",
-		"partly-cloudy-night": "/images/weather/partly-cloudy-night.png",
-		"thunderstorm": "/images/weather/thunderstorm.png",
+		"hazy": "/images/weather/hazy.png",
+		"cloudy": "/images/weather/cloudy.png",
+		"mostlycloudy": "/images/weather/mostly-cloudy-day.png",
+		"partlycloudy": "/images/weather/partly-cloudy-day.png",
+		"partlysunny": "/images/weather/mostly-cloudy-day.png",
+		"mostlysunny": "/images/weather/partly-cloudy-day.png",
+		"tstorms": "/images/weather/thunderstorm.png",
+		"chancetstorms": "/images/weather/thunderstorm.png",
 		"hail": "/images/weather/snow.png",
 		"tornado": "/images/weather/wind.png",
-		"default": "images/weather/na.png"
+		"unknown": "/images/weather/na.png",
+		"default": "/images/weather/na.png"
 	};
+
+	var nightTimeVersionOfIcon = {
+		"/images/weather/clear-day.png": "/images/weather/clear-night.png",
+		"/images/weather/partly-cloudy-day.png": "/images/weather/partly-cloudy-night.png",
+		"/images/weather/mostly-cloudy-day.png": "/images/weather/mostly-cloudy-night.png",
+		"/images/weather/chance-rain-day.png": "/images/weather/chance-rain-night.png",
+		"/images/weather/chance-tstorms-day.png": "/images/weather/chance-tstorms-night.png"
+	}
 
 	// Ajax calls only modify the cache. Then we use the cache to populate DOM when the
 	// temperature page is added to the DOM
@@ -74,25 +92,11 @@ $(document).ready(function() {
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
 	        	cachedData.currTemp = responseData.current_observation.feelslike_f;
-	        	wundergroundDone = true;
-	            if (callback && wundergroundDone && forecastIoDone) {
-	            	callback();
-	            }
+	        	cachedData.conditions = responseData.current_observation.icon;
+	        	if (callback) {
+	        		callback();
+	        	}
 	        }
-	    });
-
-		$.ajax({
-	    	// Coordinates here are hardcoded...
-	    	url: 'https://api.forecast.io/forecast/35c8a075c7e126ef14a4632a706ebbaf/37.8267,-122.423',
-	    	dataType: 'jsonp',
-	    	success: function(responseData) {
-	    		// See https://developer.forecast.io/docs/v2#forecast_call
-	    		cachedData.conditions = responseData.currently.icon;
-	    		forecastIoDone = true;
-	    		if (callback && wundergroundDone && forecastIoDone) {
-	            	callback();
-	            }
-	    	}
 	    });
 	};
 
@@ -105,8 +109,7 @@ $(document).ready(function() {
         $("#chance-of-rain-text").text(cachedData.probOfRain + "% ");
         var rainText = $('<span />').attr('class', 'small-weather-label').html('rain');
         $("#chance-of-rain-text").append(rainText);
-        var imgSrc = conditionsToIconMap[cachedData.conditions] ? conditionsToIconMap[cachedData.conditions] : 
-        	conditionsToIconMap.default;
+        var imgSrc = getIconForConditions(cachedData.conditions);
         $("#conditions-icon").attr("src", imgSrc);
         $("#current-temp-text").html(Math.floor(cachedData.currTemp) + "<span class='big-degree'>\xB0</span>");
         updateTemperatureColors();
@@ -130,6 +133,15 @@ $(document).ready(function() {
 
 	// First update
 	updateDisplayAfterAllAjax();
+
+	function getIconForConditions(conditions) {
+		var defaultIcon = conditionsToDayIconMap[conditions];
+		var currHour = new Date().getHours();
+		if (nightTimeVersionOfIcon[defaultIcon] && (currHour < 5 || currHour > 19)) {
+			return nightTimeVersionOfIcon[defaultIcon];
+		}
+		return defaultIcon;
+	}
 
 	function updateDisplayAfterAllAjax() {
 		var forecastUpdateDone = false;
