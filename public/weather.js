@@ -70,6 +70,7 @@ $(document).ready(function() {
 	        dataType: 'jsonp',
 	        success: function(responseData) {
 	            var forecastObject = responseData.forecast.simpleforecast.forecastday[0];
+	            if (!forecastObject) return;
 	            cachedData.windMph = forecastObject.avewind.mph;
 	            cachedData.high = forecastObject.high.fahrenheit;
 	            cachedData.low = forecastObject.low.fahrenheit;
@@ -89,6 +90,7 @@ $(document).ready(function() {
 	    	url: 'http://api.wunderground.com/api/95e93303e496f7c9/conditions/q/'+state+'/'+encodeURIComponent(city)+'.json',
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
+	        	if (! responseData.current_observation) return;
 	        	cachedData.currTemp = responseData.current_observation.feelslike_f;
 	        	cachedData.conditions = responseData.current_observation.icon;
 	        	if (callback) {
