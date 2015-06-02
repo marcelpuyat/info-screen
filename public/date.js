@@ -2,11 +2,11 @@
 var newDayListeners = [];
 
 $(document).ready(function() {
-	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+	var monthNames = ["Jan.", "Feb.", "March", "April", "May", "June",
+		"July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
 	];
-	var weekDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu",
-		"Fri", "Sat"
+	var weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+		"Friday", "Saturday"
 	];
 
 	var updateDate = function() {
@@ -14,7 +14,7 @@ $(document).ready(function() {
 		// Jump forward by 1 minute to make sure we're at next day
 		currDate.setTime(currDate.getTime() + 1000 * 60);
 
-		var month = monthNames[currDate.getMonth()];
+		var month = monthNames[8/*currDate.getMonth()*/];
 		var date = currDate.getDate();
 		var dayOfWeek = weekDayNames[currDate.getDay()];
 		console.log(month, date, dayOfWeek);
