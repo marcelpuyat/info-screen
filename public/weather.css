@@ -1,0 +1,16 @@
+#weather-lower-half {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#high-text, #low-text {
+	font-size: 5.5vw;
+	position: relative;
+	left: 2.5vw;
+}
+
+#current-temp-text {
+	font-size: 16vw;
+}

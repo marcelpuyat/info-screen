@@ -42,7 +42,7 @@
         </div>
 
         <div id="right-half-outer">
-            <div class="right-half-screen">
+            <div id="weather" class="right-half-screen">
                 <div class="upper-half">
                     <div class="vertical-inline-parent">
                         <p>Temperate 1</p>
@@ -50,7 +50,26 @@
                 </div>
                 <div class="lower-half">
                     <div class="vertical-inline-parent">
-                        <p>Temperature 2</p>
+                        <table id="weather-lower-half">
+                            <tr>
+                                <td style="width:16.6%" align="right">
+                                    <div class="upper-half">
+                                        <div class="vertical-inline-parent">
+                                            <h1 id="high-text" class="temp-number"></h1>
+                                        </div>
+                                    </div>
+                                    <div class="lower-half">
+                                        <div class="vertical-inline-parent">
+                                            <h1 id="low-text" class="temp-number"></h1>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:66.6%" align="center">
+                                    <h1 id="current-temp-text" class="temp-number"></h1>
+                                </td>
+                                <td style="width:16.6%" align="center"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

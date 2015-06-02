@@ -1,11 +1,14 @@
 $(document).ready(function() {
 	var state = "CA";
 	var city = "San Mateo";
-	var minsPerCall = 10;
+	var minsPerForecastCall = 10;
+	var minsPerCurrTempCall = 5;
+
+	var cachedData = {};
 
 	var updateTemperatureColors = function() {
 		$('.temp-number').each(function() {
-			$(this).css('color', 'rgba(232, 232, 232, 0.95'); // First, reset
+			$(this).css('color', 'rgba(228, 228, 228, 0.90'); // First, reset
 			var colorStringSplit = $(this).css('color').split(',');
 			var red = parseInt(colorStringSplit[0].match(/\d+$/)[0]);
 			var green = parseInt(colorStringSplit[1].match(/\d+$/)[0]);
@@ -25,49 +28,72 @@ $(document).ready(function() {
 		});
 	};
 
-	updateTemperatureColors();
-
-	var updateWeatherDisplay = function() {
+	var updateForecastData = function(callback) {
 
 		$.ajax({
 	        url: 'http://api.wunderground.com/api/95e93303e496f7c9/forecast/q/'+state+'/'+encodeURIComponent(city)+'/.json',
 	        dataType: 'jsonp',
 	        success: function(responseData) {
 	            var forecastObject = responseData.forecast.simpleforecast.forecastday[0];
-	            var windMph = forecastObject.avewind.mph;
-	            var highFahrenheitAsString = forecastObject.high.fahrenheit;
-	            var lowFahrenheitAsString = forecastObject.low.fahrenheit;
-	            var conditionsIconUrl = forecastObject.icon_url;
-	            var probOfRain = forecastObject.pop;
-	            var forecastAsSimpleText = responseData.forecast.txt_forecast.forecastday[0].fcttext.split(".")[0];
-
-	            // $("#high-text").text(highFahrenheitAsString + "\xB0");
-	            // $("#low-text").text(lowFahrenheitAsString + "\xB0");
-	            // $("#wind-text").text(windMph);
-	            // $("chance-of-rain-text").text(probOfRain);
-	            // $("forecast-text").text(forecastAsSimpleText);
-	            // $("conditions-icon").attr("src", conditionsIconUrl);
-
-	            // updateTemperatureColors();
-
-	            console.log(windMph, highFahrenheitAsString, lowFahrenheitAsString, conditionsIconUrl, probOfRain, forecastAsSimpleText);
-	        }
-	    });
-
-	    $.ajax({
-	    	url: 'http://api.wunderground.com/api/95e93303e496f7c9/conditions/q/'+state+'/'+encodeURIComponent(city)+'.json',
-	    	dataType: 'jsonp',
-	        success: function(responseData) {
-	        	var currTempFahrenheit = responseData.current_observation.feelslike_f;
-	        	// $("#current-temp-text").text(Math.floor(currTempFahrenheit) + "\xB0");
-	        	// updateTemperatureColors();
-	        	console.log("Feels like: " + currTempFahrenheit);
+	            cachedData.windMph = forecastObject.avewind.mph;
+	            cachedData.high = forecastObject.high.fahrenheit;
+	            cachedData.low = forecastObject.low.fahrenheit;
+	            cachedData.icon = forecastObject.icon_url;
+	            cachedData.probOfRain = forecastObject.pop;
+	            if (callback) {
+	            	callback();
+	            }
 	        }
 	    });
 	};
 
-	setInterval(function(){ updateWeatherDisplay(new Date().getHours()) }, 1000 * 60 * minsPerCall); // Limit is 500 calls a day.
+	var updateCurrTemp = function(callback) {
+		$.ajax({
+	    	url: 'http://api.wunderground.com/api/95e93303e496f7c9/conditions/q/'+state+'/'+encodeURIComponent(city)+'.json',
+	    	dataType: 'jsonp',
+	        success: function(responseData) {
+	        	cachedData.currTemp = responseData.current_observation.feelslike_f;
+	        	if (callback) {
+	        		callback();
+	        	}
+	        }
+	    });
+	};
 
-	updateWeatherDisplay();
+	var updateDisplay = function() {
+		$("#high-text").text(cachedData.high + "\xB0");
+        $("#low-text").text(cachedData.low + "\xB0");
+        $("#wind-text").text(cachedData.windMph);
+        $("chance-of-rain-text").text(cachedData.probOfRain);
+        $("conditions-icon").attr("src", cachedData.icon);
+        $("#current-temp-text").text(Math.floor(cachedData.currTemp) + "\xB0");
+        updateTemperatureColors();
+	}
+
+	// Update elem values when weather window is inserted
+	$(document).on('DOMNodeInserted', function(e) {
+	    if (e.target.id == 'weather') {
+	    	updateDisplay();
+	    }
+	});
+
+	// First update
+	var forecastUpdateDone = false;
+	var currTempUpdateDone = false;
+	updateForecastData(function() {
+		forecastUpdateDone = true;
+		if (forecastUpdateDone && currTempUpdateDone) {
+			updateDisplay();
+		}
+	});
+	updateCurrTemp(function() {
+		currTempUpdateDone = true;
+		if (forecastUpdateDone && currTempUpdateDone) {
+			updateDisplay();
+		}
+	});
+
+	setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
+	setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
 
 });

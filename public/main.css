@@ -64,8 +64,8 @@ p, h1, h2, h3, h4, h5 {
 	position: absolute;
 	height: 50%;
 	top: 0;
-	width: 100%;
-	left: 0;
+	width: inherit;
+	left: inherit;
 }
 
 .lower-half {
@@ -74,4 +74,16 @@ p, h1, h2, h3, h4, h5 {
 	top: 50%;
 	width: inherit;
 	left: inherit;
+}
+
+.vertical-block-parent {
+	position: relative;
+	width: 100%;
+}
+
+.vertical-block-parent div,
+.vertical-block-parent table {
+	position: absolute;
+	width: inherit;
+	top: 50%;
 }

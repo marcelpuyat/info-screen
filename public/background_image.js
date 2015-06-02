@@ -39,33 +39,4 @@ $(document).ready(function() {
 			callback();
 		});
 	}
-
-	/* From: https://jsfiddle.net/s7Wx2/ */
-	function getImageBrightness(loadedImgTag, callback) {
-        var colorSum = 0;
-
-        // create canvas
-        var canvas = document.createElement("canvas");
-        canvas.width = loadedImgTag.width;
-        canvas.height = loadedImgTag.height;
-
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(loadedImgTag,0,0);
-
-        var imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
-        var data = imageData.data;
-        var r,g,b,avg;
-
-          for(var x = 0, len = data.length; x < len; x+=4) {
-            r = data[x];
-            g = data[x+1];
-            b = data[x+2];
-
-            avg = Math.floor((r+g+b)/3);
-            colorSum += avg;
-        }
-
-        var brightness = Math.floor(colorSum / (loadedImgTag.width*loadedImgTag.height));
-        callback(brightness);
-    }
 });

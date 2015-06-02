@@ -19,7 +19,7 @@ $(document).ready(function() {
 		// Jump forward by 1 minute to make sure we're at next day
 		currDate.setTime(currDate.getTime() + 1000 * 60);
 
-		var month = monthNames[8/*currDate.getMonth()*/];
+		var month = monthNames[currDate.getMonth()];
 		var date = currDate.getDate();
 		var dayOfWeek = weekDayNames[currDate.getDay()];
 		console.log(month, date, dayOfWeek);
