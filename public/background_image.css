@@ -18,6 +18,10 @@
 	opacity: 0.0;
 }
 
-body {
-	margin: 0;
+.dark {
+	color: rgba(232, 232, 232, 0.90);
+}
+
+.light {
+	color: rgba(24, 24, 24, 0.75);
 }

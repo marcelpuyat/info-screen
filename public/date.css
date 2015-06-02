@@ -1,16 +1,19 @@
 #time-text, #am-pm-text {
 	vertical-align: text-bottom;
-	line-height: 32vw;
+	line-height: 27vw;
 }
 
 #time-text {
-	font-size: 16vw;
+	font-size: 17.25vw;
+	position: relative;
+	left: 1.5vw;
 }
 
 #am-pm-text {
 	font-size: 3vw;
 	position: relative;
-	right: 2vw;
+	top: .15vw;
+	left: 1vw;
 }
 
 #date-text {

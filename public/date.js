@@ -9,6 +9,11 @@ $(document).ready(function() {
 		"Friday", "Saturday"
 	];
 
+	elementsToChangeColor.push("#date-text");
+	elementsToChangeColor.push("#day-text");
+	elementsToChangeColor.push("#time-text");
+	elementsToChangeColor.push("#am-pm-text");
+
 	var updateDate = function() {
 		var currDate = new Date();
 		// Jump forward by 1 minute to make sure we're at next day
