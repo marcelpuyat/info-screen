@@ -38,7 +38,7 @@ $(document).ready(function() {
 		"/images/weather/mostly-cloudy-day.png": "/images/weather/mostly-cloudy-night.png",
 		"/images/weather/chance-rain-day.png": "/images/weather/chance-rain-night.png",
 		"/images/weather/chance-tstorms-day.png": "/images/weather/chance-tstorms-night.png"
-	}
+	};
 
 	// Ajax calls only modify the cache. Then we use the cache to populate DOM when the
 	// temperature page is added to the DOM
@@ -46,12 +46,10 @@ $(document).ready(function() {
 
 	var updateTemperatureColors = function() {
 		$('.temp-number').each(function() {
-			$(this).css('color', 'rgba(228, 228, 228, 0.87'); // First, reset
-			var colorStringSplit = $(this).css('color').split(',');
-			var red = parseInt(colorStringSplit[0].match(/\d+$/)[0]);
-			var green = parseInt(colorStringSplit[1].match(/\d+$/)[0]);
-			var blue = parseInt(colorStringSplit[2].match(/\d+$/)[0]);
-			var alpha = parseFloat(colorStringSplit[3]);
+			var red = 228;
+			var green = 228;
+			var blue = 228;
+			var alpha = 0.87;
 
 			var temp = parseInt($(this).text());
 			if (temp > 75) {

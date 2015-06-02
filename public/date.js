@@ -1,5 +1,5 @@
 // These listeners should not take too long to finish...
-var newDayListeners = [];
+window._newDayListeners = [];
 
 $(document).ready(function() {
 	var monthNames = ["Jan.", "Feb.", "March", "April", "May", "June",
@@ -8,11 +8,6 @@ $(document).ready(function() {
 	var weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
 		"Friday", "Saturday"
 	];
-
-	elementsToChangeColor.push("#date-text");
-	elementsToChangeColor.push("#day-text");
-	elementsToChangeColor.push("#time-text");
-	elementsToChangeColor.push("#am-pm-text");
 
 	var updateDate = function() {
 		var currDate = new Date();
@@ -28,8 +23,8 @@ $(document).ready(function() {
 		$("#day-text").text(dayOfWeek);
 
 		// Call all new day listeners
-		for (var i = 0; i < newDayListeners.length; i++) {
-			newDayListeners[i]();
+		for (var i = 0; i < _newDayListeners.length; i++) {
+			_newDayListeners[i]();
 		}
 	};
 
@@ -37,11 +32,11 @@ $(document).ready(function() {
 		var currTime = new Date();
 
 		var hourToDisplay = currTime.getHours() % 12;
-		if (hourToDisplay == 0) hourToDisplay = 12;
+		if (hourToDisplay === 0) hourToDisplay = 12;
 
 		$("#time-text").text(pad(hourToDisplay, 2) + ":" + pad(currTime.getMinutes(), 2));
 		$("#am-pm-text").text(currTime.getHours() < 12 ? "AM" : "PM");
-	}
+	};
 
 	var numMillisInMinute = 1000 * 60;
 	var numMillisInDay = 1000 * 60 * 60 * 24;
@@ -60,7 +55,7 @@ $(document).ready(function() {
 			updateTime();
 			setTimerForTimeUpdate();
 		}, numMillisTilNextMinute);
-	}
+	};
 	setTimerForTimeUpdate();
 	
 	// Set interval loop for updating date
@@ -75,7 +70,7 @@ $(document).ready(function() {
 			updateDate();
 			setTimerForDateUpdate();
 		}, numMillisTilStartOfNextDay);
-	}
+	};
 	setTimerForDateUpdate();
 
 	function pad(num, size) {

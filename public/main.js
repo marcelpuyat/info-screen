@@ -1,4 +1,4 @@
-var _isMultipage = false;
+window._isMultipage = false;
 
 $(function() {
 	var queue = [];
