@@ -22,9 +22,10 @@ app.configure(function() {
   app.use(express.static(__dirname, 'public'));
 
   app.use("/styles",  express.static(__dirname + '/public'));
-  app.use("/fonts",  express.static(__dirname + '/public'));
+  app.use("/fonts",  express.static(__dirname + '/public/fonts'));
   app.use("/scripts", express.static(__dirname + '/public'));
-  app.use("/images",  express.static(__dirname + '/public'));
+  app.use("/vendor", express.static(__dirname + '/public/vendor'));
+  app.use("/images",  express.static(__dirname + '/public/images'));
 });
 
 app.listen(8082);
