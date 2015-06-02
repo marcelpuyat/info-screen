@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 	var updateTemperatureColors = function() {
 		$('.temp-number').each(function() {
-			$(this).css('color', 'rgba(228, 228, 228, 0.90'); // First, reset
+			$(this).css('color', 'rgba(228, 228, 228, 0.87'); // First, reset
 			var colorStringSplit = $(this).css('color').split(',');
 			var red = parseInt(colorStringSplit[0].match(/\d+$/)[0]);
 			var green = parseInt(colorStringSplit[1].match(/\d+$/)[0]);
