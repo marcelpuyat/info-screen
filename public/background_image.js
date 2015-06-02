@@ -2,8 +2,8 @@ var elementsToChangeColor = [];
 
 $(document).ready(function() {
 
-	var bufferTime = 1000 * 15;
-	var timeBewteenBackgrounds = 1000 * 30;
+	var bufferTime = 1000 * 60 * 2;
+	var timeBewteenBackgrounds = 1000 * 60 * 4;
 
 	var updateBackground = function() {
 	    $.ajax({
