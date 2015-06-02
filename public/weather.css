@@ -11,6 +11,34 @@
 	left: 2.5vw;
 }
 
+#wind-text, #chance-of-rain-text {
+	font-size: 5.5vw;
+	position: relative;
+	right: 3.5vw;
+}
+
+.small-weather-number-column h1 {
+	vertical-align: top;
+	position: relative;
+	top: 4.5vw;
+}
+
+.small-weather-label {
+	position: relative;
+	bottom: 0.75vw;
+	font-size: 3vw;
+}
+
 #current-temp-text {
 	font-size: 16vw;
+}
+
+#weather-lower-half {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#weather-lower-half td {
+    word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
 }

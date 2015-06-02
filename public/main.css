@@ -2,9 +2,6 @@
 	font-family: HelveticaNeue; src: url('/fonts/HelveticaNeue.ttf');
 }
 
-.background {
-	z-index: -1;
-}
 
 body, html {
 	padding: 0;
@@ -18,9 +15,18 @@ body {
 	overflow: hidden;
 }
 
+
 p, h1, h2, h3, h4, h5 {
 	color: rgba(228, 228, 228, 0.90);
 }
+
+
+.background {
+	z-index: -1;
+}
+
+
+/* Left and right half styling */
 
 #left-half-outer, #right-half-outer {
 	display: inline-block;
@@ -47,6 +53,9 @@ p, h1, h2, h3, h4, h5 {
 	position: relative;
 }
 
+/* End left and right half styling */
+
+
 /* For vertically centering inline elems */
 
 .vertical-inline-parent {
@@ -67,6 +76,7 @@ p, h1, h2, h3, h4, h5 {
 }
 
 /* end inline vertical center */
+
 
 /* For splitting into vertical halves */
 

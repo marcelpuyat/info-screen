@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	var state = "CA";
-	var city = "San Mateo";
+	var city = "Stanford";
 	var minsPerForecastCall = 10;
 	var minsPerCurrTempCall = 5;
 
+	// Ajax calls only modify the cache. Then we use the cache to populate DOM when the
+	// temperature page is added to the DOM
 	var cachedData = {};
 
 	var updateTemperatureColors = function() {
@@ -63,9 +65,13 @@ $(document).ready(function() {
 	var updateDisplay = function() {
 		$("#high-text").text(cachedData.high + "\xB0");
         $("#low-text").text(cachedData.low + "\xB0");
-        $("#wind-text").text(cachedData.windMph);
-        $("chance-of-rain-text").text(cachedData.probOfRain);
-        $("conditions-icon").attr("src", cachedData.icon);
+        $("#wind-text").text(cachedData.windMph + " ");
+        var mphText = $('<span />').attr('class', 'small-weather-label').html('mph');
+        $("#wind-text").append(mphText);
+        $("#chance-of-rain-text").text(cachedData.probOfRain + "% ");
+        var rainText = $('<span />').attr('class', 'small-weather-label').html('rain');
+        $("#chance-of-rain-text").append(rainText);
+        $("#conditions-icon").attr("src", cachedData.icon);
         $("#current-temp-text").text(Math.floor(cachedData.currTemp) + "\xB0");
         updateTemperatureColors();
 	}
