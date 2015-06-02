@@ -59,7 +59,9 @@ $(document).ready(function() {
 	            cachedData.low = forecastObject.low.fahrenheit;
 	            cachedData.icon = forecastObject.icon_url;
 	            cachedData.probOfRain = forecastObject.pop;
-	            callback();
+	            if (callback) {
+	            	callback();
+	            }
 	        }
 	    });
 	};
@@ -95,8 +97,8 @@ $(document).ready(function() {
 	};
 
 	var updateDisplay = function() {
-		$("#high-text").text(cachedData.high + "\xB0");
-        $("#low-text").text(cachedData.low + "\xB0");
+		$("#high-text").html(cachedData.high + "<span class='small-degree'>\xB0</span>");
+        $("#low-text").html(cachedData.low + "<span class='small-degree'>\xB0</span>");
         $("#wind-text").text(cachedData.windMph + " ");
         var mphText = $('<span />').attr('class', 'small-weather-label').html('mph');
         $("#wind-text").append(mphText);
@@ -106,35 +108,44 @@ $(document).ready(function() {
         var imgSrc = conditionsToIconMap[cachedData.conditions] ? conditionsToIconMap[cachedData.conditions] : 
         	conditionsToIconMap.default;
         $("#conditions-icon").attr("src", imgSrc);
-        console.log(conditionsToIconMap[cachedData.conditions]);
-        $("#current-temp-text").text(Math.floor(cachedData.currTemp) + "\xB0");
+        $("#current-temp-text").html(Math.floor(cachedData.currTemp) + "<span class='big-degree'>\xB0</span>");
         updateTemperatureColors();
+	};
+
+	if (_isMultipage) {
+		// Update elem values when weather window is inserted
+		$(document).on('DOMNodeInserted', function(e) {
+		    if (e.target.id == 'weather') {
+		    	updateDisplay();
+		    }
+		});
+
+		// Only ajax calls are on time interval (not the display updating.)
+		setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
+		setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
+	} else {
+		// Single page. Update display on time interval
+		setInterval(updateDisplayAfterAllAjax, 1000 * 60 * minsPerForecastCall);
 	}
 
-	// Update elem values when weather window is inserted
-	$(document).on('DOMNodeInserted', function(e) {
-	    if (e.target.id == 'weather') {
-	    	updateDisplay();
-	    }
-	});
-
 	// First update
-	var forecastUpdateDone = false;
-	var currTempUpdateDone = false;
-	updateForecastData(function() {
-		forecastUpdateDone = true;
-		if (forecastUpdateDone && currTempUpdateDone) {
-			updateDisplay();
-		}
-	});
-	updateCurrTemp(function() {
-		currTempUpdateDone = true;
-		if (forecastUpdateDone && currTempUpdateDone) {
-			updateDisplay();
-		}
-	});
+	updateDisplayAfterAllAjax();
 
-	setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
-	setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
+	function updateDisplayAfterAllAjax() {
+		var forecastUpdateDone = false;
+		var currTempUpdateDone = false;
+		updateForecastData(function() {
+			forecastUpdateDone = true;
+			if (forecastUpdateDone && currTempUpdateDone) {
+				updateDisplay();
+			}
+		});
+		updateCurrTemp(function() {
+			currTempUpdateDone = true;
+			if (forecastUpdateDone && currTempUpdateDone) {
+				updateDisplay();
+			}
+		});
+	}
 
 });

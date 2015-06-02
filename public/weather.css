@@ -21,6 +21,12 @@
 	position: relative;
 }
 
+.small-degree {
+	font-size: 3.5vw;
+	position: relative;
+	bottom: 2.6vw;
+}
+
 #high-text, #low-text {
 	left: 1.5vw;
 }
@@ -43,6 +49,12 @@
 
 #current-temp-text {
 	font-size: 16.5vw;
+}
+
+.big-degree {
+	font-size: 8.25vw;
+	position: relative;
+	bottom: 6vw;
 }
 
 #weather-lower-half {

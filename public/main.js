@@ -1,3 +1,5 @@
+var _isMultipage = false;
+
 $(function() {
 	var queue = [];
 	$('.right-half-screen').each(function(idx) {
@@ -6,7 +8,7 @@ $(function() {
 		queue.push(this);
 	});
 	
-	// setInterval(function() {
+	// _isMultipage = setInterval(function() {
 	// 	var lastVisibleElem = queue.shift();
 	// 	var nextVisibleElem = queue[0];
 
