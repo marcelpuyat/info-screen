@@ -27,5 +27,5 @@ $(document).ready(function() {
 	};
 
 	
-	updateCalendar();
+	// updateCalendar();
 });

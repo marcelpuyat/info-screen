@@ -1,0 +1,22 @@
+#time-text, #am-pm-text {
+	vertical-align: text-bottom;
+	line-height: 32vw;
+}
+
+#time-text {
+	font-size: 16vw;
+}
+
+#am-pm-text {
+	font-size: 3vw;
+	position: relative;
+	right: 2vw;
+}
+
+#date-text {
+
+}
+
+#day-text {
+
+}

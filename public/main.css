@@ -11,14 +11,29 @@ body, html {
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	font-family: HelveticaNeue;
+	font-family: HelveticaNeue, Helvetica, Verdana, Arial, Sans-Serif;
+}
+
+p, h1, h2, h3, h4, h5 {
+	color: rgba(228, 228, 228, 0.90);
+}
+
+#left-half-outer, #right-half-outer {
+	display: inline-block;
+}
+
+#left-half-outer {
+	position: relative;
+	height: 100%;
+	width: 50%;
+	left: 0;
 }
 
 #right-half-outer {
 	position: relative;
 	height: 100%;
-	width: 50%;
-	left: 50%;
+	width: 49%;
+	left: 0;
 }
 
 .right-half-screen {
@@ -34,7 +49,11 @@ body, html {
   width: 100%;
 }
 
-.vertical-inline-parent p {
+.vertical-inline-parent p,
+.vertical-inline-parent h1,
+.vertical-inline-parent h2,
+.vertical-inline-parent h3,
+.vertical-inline-parent h4 {
   display: table-cell;
   margin: 0;
   vertical-align: middle;
