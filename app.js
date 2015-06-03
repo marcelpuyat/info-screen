@@ -106,7 +106,13 @@ app.get('/background.json', function(req, res) {
         return;
       }
 
-      var wallpapers = JSON.parse(body).wallpapers;
+      var wallpapers;
+      try {
+        wallpapers = JSON.parse(body).wallpapers;
+      } catch (err) {
+        res.jsonp({error: err});
+        return;
+      }
       var randomIndex = Math.floor(Math.random() * wallpapers.length);
       res.jsonp({imageUrl: wallpapers[randomIndex].url});
     }

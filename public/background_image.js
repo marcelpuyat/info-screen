@@ -17,16 +17,18 @@ $(document).ready(function() {
 	        dataType: 'jsonp',
 	        type: 'GET',
 	        jsonp: 'callback',
-	        success: function(responseData) {
-	        	if (responseData.error) {return;}
-	        	document.getElementById('new').style.backgroundImage = "url("+responseData.imageUrl+")";
-	        	setTimeout(animateBgAndWaitForNextBackground, bufferTime);
-	        	responseData = null;
-	        }
+	        success: handleBackgroundResponse
 	    });
 	};
 
 	setTimeout(updateBackground, timeBewteenBackgrounds);
+
+	function handleBackgroundResponse(responseData) {
+		if (responseData.error) {return;}
+    	document.getElementById('new').style.backgroundImage = "url("+responseData.imageUrl+")";
+    	setTimeout(animateBgAndWaitForNextBackground, bufferTime);
+    	responseData = null;
+	}
 
 	/* https://jsfiddle.net/9GwNG/3/ */
 	function animateBg(callback) {
