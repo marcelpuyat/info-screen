@@ -2,8 +2,16 @@ var elementsToChangeColor = [];
 
 $(document).ready(function() {
 
-	var bufferTime = 1000 * 60 * 2;
-	var timeBewteenBackgrounds = 1000 * 60 * 4;
+	var bufferTime = 1000 * 5;
+	var timeBewteenBackgrounds = 1000 * 10;
+
+	var waitForNextBackground = function() {
+		setTimeout(updateBackground, timeBewteenBackgrounds);
+	};
+
+	var animateBgAndWaitForNextBackground = function() {
+		animateBg(waitForNextBackground);
+	};
 
 	var updateBackground = function() {
 	    $.ajax({
@@ -13,18 +21,10 @@ $(document).ready(function() {
 	        jsonp: 'callback',
 	        success: function(responseData) {
 	        	document.getElementById('new').style.backgroundImage = "url("+responseData.imageUrl+")";
-
-	        	setTimeout(function() {
-	        		animateBg(function() {
-	        			// Load next one after the buffer time is over.
-		        		setTimeout(function() {
-		        			updateBackground();
-		        		}, timeBewteenBackgrounds);
-	        		});
-	        	}, bufferTime);
+	        	setTimeout(animateBgAndWaitForNextBackground, bufferTime);
 	        }
 	    });
-	}
+	};
 
 	setTimeout(updateBackground, timeBewteenBackgrounds);
 

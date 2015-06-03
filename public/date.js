@@ -17,7 +17,6 @@ $(document).ready(function() {
 		var month = monthNames[currDate.getMonth()];
 		var date = currDate.getDate();
 		var dayOfWeek = weekDayNames[currDate.getDay()];
-		console.log(month, date, dayOfWeek);
 
 		$("#date-text").text(month + " " + date);
 		$("#day-text").text(dayOfWeek);
@@ -51,6 +50,7 @@ $(document).ready(function() {
 			currTime.getSeconds() * 1000 +
 			currTime.getMilliseconds()
 		);
+		currTime = null;
 		setTimeout(function() {
 			updateTime();
 			setTimerForTimeUpdate();
@@ -66,6 +66,7 @@ $(document).ready(function() {
 			currDate.getMinutes() * 1000 * 60 +
 			currDate.getSeconds() * 1000 +
 			currDate.getMilliseconds());
+		currDate = null;
 		setTimeout(function() {
 			updateDate();
 			setTimerForDateUpdate();
