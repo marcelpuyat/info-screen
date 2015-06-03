@@ -7,6 +7,10 @@ $(function() {
 			$(this).detach();
 		queue.push(this);
 	});
+
+	setTimeout(function()
+		location.reload(true);
+	}, 1000 * 60);
 	
 	// _isMultipage = setInterval(function() {
 	// 	var lastVisibleElem = queue.shift();
