@@ -32,7 +32,8 @@
 }
 
 #wind-text, #chance-of-rain-text {
-	right: 3.5vw;
+	right: 3vw;
+	text-align: left
 }
 
 .small-weather-number-column h1 {
@@ -45,6 +46,7 @@
 	position: relative;
 	bottom: 0.75vw;
 	font-size: 3vw;
+	left: 1vw;
 }
 
 #current-temp-text {

@@ -53,13 +53,15 @@ $(document).ready(function() {
 
 			var temp = parseInt($(this).text());
 			if (temp > 75) {
-				var redEmphasis = (temp - 75) * 6;
+				var redEmphasis = ((temp - 75) * 6) + 10;
 				if (redEmphasis > 160) redEmphasis = 160;
 				$(this).css('color', 'rgba('+red+','+(green-redEmphasis)+','+(blue-redEmphasis)+','+alpha+')');
 			} else if (temp < 70) {
 				var blueEmphasis = (70 - temp) * 4;
 				if (blueEmphasis > 180) blueEmphasis = 180;
 				$(this).css('color', 'rgba('+(red-blueEmphasis)+','+(green-blueEmphasis)+','+blue+','+alpha+')');
+			} else {
+				$(this).css('color', 'rgba(228, 200, 174, ' + alpha + ')');
 			}
 		});
 	};

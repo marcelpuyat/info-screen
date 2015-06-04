@@ -7,19 +7,25 @@
 	font-size: 17.25vw;
 	position: relative;
 	left: 1.5vw;
+	top: 2.5vw;
 }
 
 #am-pm-text {
 	font-size: 3vw;
 	position: relative;
-	top: .15vw;
+	top: 2.65vw;
 	left: 0.5vw;
 }
 
+#date-text, #day-text {
+	font-size: 7.5vw;
+	position: relative;
+}
+
 #date-text {
-	font-size: 9vw;
+	top: 2.5vw;
 }
 
 #day-text {
-	font-size: 9vw;
+	bottom: 2.5vw;
 }
