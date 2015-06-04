@@ -2,6 +2,8 @@
 	"globals": {
 	    "$": false,
 	    "_isMultipage": false,
-	    "_newDayListeners": false
+	    "_newDayListeners": false,
+	    "require": false,
+	    "__dirname": false
 	}
 }

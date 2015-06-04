@@ -3,6 +3,7 @@
         <link rel="stylesheet" href="/styles/main.css"></link>
         <link rel="stylesheet" href="/styles/date.css"></link>
         <link rel="stylesheet" href="/styles/weather.css"></link>
+        <link rel="stylesheet" href="/styles/puppy.css"></link>
         <link rel="stylesheet" href="/styles/calendar.css"></link>
         <link rel="stylesheet" href="/styles/background_image.css"></link>
 
@@ -10,6 +11,7 @@
         <script src="/vendor/easings.js"></script>
         <script src="/scripts/background_image.js"></script>
         <script src="/scripts/main.js"></script>
+        <script src="/scripts/puppy.js"></script>
         <script src="/scripts/date.js"></script>
         <script src="/scripts/weather.js"></script>
         <script src="/scripts/calendar.js"></script>
@@ -83,21 +85,16 @@
                     </div>
                 </div>
             </div>
-            <div class="right-half-screen">
+            <div id="puppy" class="right-half-screen">
                 <div class="vertical-inline-parent">
-                    <p>Movies</p>
-                </div>
-            </div>
-            <div class="right-half-screen">
-                <div class="vertical-inline-parent">
-                    <p>NBA News</p>
+                    <img id="puppy-img"></img>
                 </div>
             </div>
         </div>
 
 
         <div id="background">
-            <div id="old" class="background"></div>
+            <div id="old" class="background" src="/images/first_bg.jpg"></div>
             <div id="new" class="background"></div>
         </div>
 
