@@ -23,7 +23,7 @@ $(document).ready(function() {
 		"mostlycloudy": "/images/weather/mostly-cloudy-day.png",
 		"partlycloudy": "/images/weather/partly-cloudy-day.png",
 		"partlysunny": "/images/weather/mostly-cloudy-day.png",
-		"mostlysunny": "/images/weather/partly-cloudy-day.png",
+		"mostlysunny": "/images/weather/mostly-sunny.png",
 		"tstorms": "/images/weather/thunderstorm.png",
 		"chancetstorms": "/images/weather/thunderstorm.png",
 		"hail": "/images/weather/snow.png",
