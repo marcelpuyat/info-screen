@@ -8,7 +8,7 @@ $(function() {
 		queue.push(this);
 	});
 
-	setTimeout(function()
+	setTimeout(function() {
 		location.reload(true);
 	}, 1000 * 60);
 	
