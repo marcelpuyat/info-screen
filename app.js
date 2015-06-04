@@ -2,6 +2,20 @@ var util = require('util');
 var express  = require('express');
 var gcal = require('./GoogleCalendar');
 var request = require('request');
+var port = 8082;
+
+/*
+  ===========================================================================
+            Setup Chromium to restart (to prevent OOM crashes)
+  ===========================================================================
+*/
+var exec = require('child_process').exec;
+exec('chromium --kiosk localhost:'+port);
+setInterval(function() {
+  exec('killall chromium', function() {
+    exec('chromium --kiosk localhost:'+port);
+  });
+}, 1000 * 20);
 
 /*
   ===========================================================================
@@ -28,7 +42,7 @@ app.configure(function() {
   app.use("/images",  express.static(__dirname + '/public/images'));
 });
 
-app.listen(8082);
+app.listen(port);
 
 passport.use(new GoogleStrategy({
     clientID: "823634938121-mnnaj9evapu5p3pim1985ekekjec4l72.apps.googleusercontent.com",
