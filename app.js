@@ -10,12 +10,15 @@ var port = 8082;
   ===========================================================================
 */
 var exec = require('child_process').exec;
+console.log("Starting Chromium");
 exec('chromium --kiosk localhost:'+port);
 setInterval(function() {
+  console.log("Killing Chromium");
   exec('killall chromium', function() {
+    console.log("Restarting Chromium");
     exec('chromium --kiosk localhost:'+port);
   });
-}, 1000 * 20);
+}, 1000 * 60 * 25);
 
 /*
   ===========================================================================
