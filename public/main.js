@@ -30,6 +30,6 @@ $(function() {
 
 			queue.push(lastVisibleElem);
 		}
-	}, 1000 * 10);
+	}, 1000 * 15);
 	window._isMultipage = true;
 });
