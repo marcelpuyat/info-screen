@@ -26,7 +26,7 @@ $(document).ready(function() {
 	    });
 	}
 
-	setTimeout(updateBackground, timeBewteenBackgrounds);
+	updateBackground(); // Randomize first background from the start
 
 	/* https://jsfiddle.net/9GwNG/3/ */
 	function animateBg(callback) {
