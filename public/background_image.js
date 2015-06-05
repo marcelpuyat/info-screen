@@ -25,8 +25,8 @@ $(document).ready(function() {
 	        }
 	    });
 	}
-
-	setTimeout(updateBackground, timeBewteenBackgrounds);
+	
+	updateBackground();
 
 	/* https://jsfiddle.net/9GwNG/3/ */
 	function animateBg(callback) {

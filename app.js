@@ -2,7 +2,31 @@ var util = require('util');
 var express  = require('express');
 var gcal = require('./GoogleCalendar');
 var request = require('request');
+var fs = require('fs');
 var RottenTomatoes = require('./RottenTomatoes');
+
+var port = 8082;
+
+/*
+  ===========================================================================
+            Setup Chromium to restart (to prevent OOM crashes)
+  ===========================================================================
+*/
+if (fs.lstatSync('/usr/bin/chromium').isFile()) {
+  var exec = require('child_process').exec;
+  console.log("Starting Chromium");
+  exec('chromium --kiosk localhost:'+port);
+  setInterval(function() {
+    console.log("Killing Chromium");
+    exec('killall chromium', function() {
+      console.log("Restarting Chromium");
+      exec('chromium --kiosk localhost:'+port);
+    });
+  }, 1000 * 60 * 60);
+} else {
+  console.error("WARNING: Could not find Chromium at /usr/bin/chromium."
+  +" Will be vulnerable to OOM crashes.");
+}
 
 /*
   ===========================================================================
@@ -29,7 +53,7 @@ app.configure(function() {
   app.use("/images",  express.static(__dirname + '/public/images'));
 });
 
-app.listen(8082);
+app.listen(port);
 
 passport.use(new GoogleStrategy({
     clientID: "823634938121-mnnaj9evapu5p3pim1985ekekjec4l72.apps.googleusercontent.com",
