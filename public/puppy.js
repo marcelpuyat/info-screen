@@ -12,8 +12,6 @@ $(function() {
 		setInterval(updatePuppyImg, 1000 * 10);
 	}
 
-
-
 	function updatePuppyImg() {
 		$.ajax({
 	        url: "http://localhost:8082/puppy.json",

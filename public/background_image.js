@@ -27,10 +27,6 @@ $(document).ready(function() {
 	}
 
 	updateBackground();
-	BackgroundCheck.init({
-		targets: ".dimmable-text",
-		images: "#old"
-	});
 
 	/* https://jsfiddle.net/9GwNG/3/ */
 	function animateBg(callback) {
@@ -38,7 +34,6 @@ $(document).ready(function() {
 			$("#new").attr("id", "temp");
 			$("#old").attr("id", "new");
 			$("#temp").attr("id", "old");
-			BackgroundCheck.set('images', '#old');
 		});
 
 		$("#new").animate({'opacity':1.0},2000, function() {

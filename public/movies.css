@@ -10,7 +10,7 @@
 	margin-top: auto;
 	margin-bottom: auto;
 	left: 3%;
-	width: 27%;
+	width: 24%;
 }
 
 .movie-info {
@@ -32,7 +32,7 @@
 }
 
 .movie-title {
-	font-size: 4.1vw;
+	font-size: 4.5vw;
 	margin-top: 0;
 	margin-bottom: 5%;
 }
@@ -78,5 +78,5 @@
 	position: relative;
 	margin: 0;
 	left: 4%;
-	font-size: 2.3vw;
+	font-size: 2.8vw;
 }
