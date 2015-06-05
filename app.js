@@ -179,7 +179,7 @@ app.get('/puppy.json', function(req, res) {
         return;
       }
 
-      res.jsonp({imageUrl: JSON.parse(body).data[numPicInPage].images.original.mp4});
+      res.jsonp({imageUrl: JSON.parse(body).data[numPicInPage].images.original.webp});
     }
   );
 });
