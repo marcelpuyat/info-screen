@@ -9,7 +9,6 @@ $(function() {
 	        success: function(responseData) {
 	        	if (responseData.error) {console.error(responseData.error); return; }
 	        	moviesCache = responseData.movies;
-	        	console.dir(moviesCache);
 	        	if (callback) {
 	        		callback();
 	        	}

@@ -2,8 +2,8 @@ var elementsToChangeColor = [];
 
 $(document).ready(function() {
 
-	var bufferTime = 1000 * 60 * 2;
-	var timeBewteenBackgrounds = 1000 * 60 * 4;
+	var bufferTime = 1000 * 5;
+	var timeBewteenBackgrounds = 1000 * 10;
 
 	var updateBackground = function() {
 	    $.ajax({
@@ -25,8 +25,12 @@ $(document).ready(function() {
 	        }
 	    });
 	}
-	
+
 	updateBackground();
+	BackgroundCheck.init({
+		targets: ".dimmable-text",
+		images: "#old"
+	});
 
 	/* https://jsfiddle.net/9GwNG/3/ */
 	function animateBg(callback) {
@@ -34,7 +38,9 @@ $(document).ready(function() {
 			$("#new").attr("id", "temp");
 			$("#old").attr("id", "new");
 			$("#temp").attr("id", "old");
+			BackgroundCheck.set('images', '#old');
 		});
+
 		$("#new").animate({'opacity':1.0},2000, function() {
 			callback();
 		});
