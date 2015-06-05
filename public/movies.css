@@ -1,0 +1,82 @@
+.rating {
+	display: inline;
+}
+
+.movie-poster {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+	left: 3%;
+	width: 27%;
+}
+
+.movie-info {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 32%;
+	width: 68%;
+	height: 100%;
+}
+
+.title-and-genre {
+	position: absolute;
+	margin: 0;
+}
+
+.title-and-genre {
+	top: 2%;
+}
+
+.movie-title {
+	font-size: 4.1vw;
+	margin-top: 0;
+	margin-bottom: 5%;
+}
+
+.freshness-box, .audience-box {
+	position: absolute;
+	height: 23%;
+	width: 100%;
+	top: 65%;
+	width: 33%;
+}
+
+.freshness-box {
+	left: 0;
+}
+
+.audience-box {
+	left: 50%;
+}
+
+.rating-icon {
+	height: 70%;
+	width: auto;
+	display: block;
+	position: absolute;
+	margin-top: auto;
+	margin-bottom: auto;
+	top: 0;
+	bottom: 0;
+}
+
+.freshness-rating {
+	position: relative;
+	left: 7%;
+}
+
+.tomato-icon {
+	bottom: 10%;
+	margin-right: 5%;
+}
+
+.genre {
+	position: relative;
+	margin: 0;
+	left: 4%;
+	font-size: 2.3vw;
+}

@@ -4,6 +4,7 @@
 	    "_isMultipage": false,
 	    "_newDayListeners": false,
 	    "require": false,
-	    "__dirname": false
+	    "__dirname": false,
+	    "module": false
 	}
 }

@@ -2,6 +2,7 @@ var util = require('util');
 var express  = require('express');
 var gcal = require('./GoogleCalendar');
 var request = require('request');
+var RottenTomatoes = require('./RottenTomatoes');
 
 /*
   ===========================================================================
@@ -175,3 +176,9 @@ function getRandomTerm() {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+app.get('/movies.json', function(req, res) {
+  RottenTomatoes.getMovieData(function(movieData) {
+    res.jsonp({movies: movieData});
+  });
+});

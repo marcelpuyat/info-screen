@@ -18,14 +18,14 @@
 }
 
 #date-text, #day-text {
-	font-size: 7.5vw;
+	font-size: 7.75vw;
 	position: relative;
 }
 
 #date-text {
-	top: 2.5vw;
+	top: 2.25vw;
 }
 
 #day-text {
-	bottom: 2.5vw;
+	bottom: 2.25vw;
 }

@@ -51,6 +51,7 @@ p, h1, h2, h3, h4, h5 {
 	height: 100%;
 	width: 100%;
 	position: relative;
+	overflow: hidden;
 }
 
 /* End left and right half styling */
@@ -96,4 +97,27 @@ p, h1, h2, h3, h4, h5 {
 	left: inherit;
 }
 
+.upper-third {
+	position: absolute;
+	height: 31.3%;
+	top: 0;
+	width: inherit;
+	left: inherit;
+}
+
+.middle-third {
+	position: absolute;
+	height: 31.3%;
+	top: 34.3%;
+	width: inherit;
+	left: inherit;
+}
+
+.lower-third {
+	position: absolute;
+	height: 31.3%;
+	top: 68.6%;
+	width: inherit;
+	left: inherit;
+}
 /* End split vertical halves */

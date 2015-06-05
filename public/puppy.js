@@ -1,7 +1,7 @@
 $(function() {
 	updatePuppyImg();
 
-	if (_isMultipage) {
+	if (window._isMultipage) {
 		// Update elem values when weather window is inserted
 		$(document).on('DOMNodeInserted', function(e) {
 		    if (e.target.id == 'puppy') {

@@ -117,21 +117,21 @@ $(document).ready(function() {
         updateTemperatureColors();
 	};
 
-	if (_isMultipage) {
-		// Update elem values when weather window is inserted
-		$(document).on('DOMNodeInserted', function(e) {
-		    if (e.target.id == 'weather') {
-		    	updateDisplay();
-		    }
-		});
+	// if (_isMultipage) {
+	// 	// Update elem values when weather window is inserted
+	// 	$(document).on('DOMNodeInserted', function(e) {
+	// 	    if (e.target.id == 'weather') {
+	// 	    	updateDisplay();
+	// 	    }
+	// 	});
 
-		// Only ajax calls are on time interval (not the display updating.)
-		setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
-		setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
-	} else {
-		// Single page. Update display on time interval
-		setInterval(updateDisplayAfterAllAjax, 1000 * 60 * minsPerForecastCall);
-	}
+	// 	// Only ajax calls are on time interval (not the display updating.)
+	// 	setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
+	// 	setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
+	// } else {
+	// 	// Single page. Update display on time interval
+	// 	setInterval(updateDisplayAfterAllAjax, 1000 * 60 * minsPerForecastCall);
+	// }
 
 	// First update
 	updateDisplayAfterAllAjax();
