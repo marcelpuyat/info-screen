@@ -69,6 +69,10 @@
 	left: 7%;
 }
 
+.freshness-rating, .audience-rating {
+	font-size: 2.6vw;
+}
+
 .tomato-icon {
 	bottom: 10%;
 	margin-right: 5%;
