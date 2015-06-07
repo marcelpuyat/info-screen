@@ -14,7 +14,7 @@ $(function() {
 
 	function updatePuppyImg() {
 		$.ajax({
-	        url: "http://localhost:8082/puppy.json",
+	        url: "http://localhost:8082/puppy.jsonp",
 	        dataType: 'jsonp',
 	        success: function(responseData) {
 	        	if (responseData.error) {console.error(responseData.error); return; }

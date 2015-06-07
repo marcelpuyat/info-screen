@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 	var updateForecastData = function(callback) {
 		$.ajax({
-	        url: 'http://localhost:8082/weather/forecast.json',
+	        url: 'http://localhost:8082/weather/forecast.jsonp',
 	        dataType: 'jsonp',
 	        success: function(responseData) {
 	        	console.dir(responseData);
@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 	var updateCurrTemp = function(callback) {
 		$.ajax({
-	    	url: 'http://localhost:8082/weather/conditions.json',
+	    	url: 'http://localhost:8082/weather/conditions.jsonp',
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
 	        	console.dir(responseData);

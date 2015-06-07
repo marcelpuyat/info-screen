@@ -46,7 +46,6 @@ function printNoChromiumWarning() {
             Setup express server
   ===========================================================================
 */
-
 var app = express();
 
 app.configure(function() {
@@ -69,19 +68,24 @@ app.get('/', function(req, res){
   res.sendfile("screen.html");
 });
 
-app.get('/weather/conditions.json', function(req, res) {
+/*
+  ===========================================================================
+            JSONP endpoints for front-end to call
+  ===========================================================================
+*/
+app.get('/weather/conditions.jsonp', function(req, res) {
   jsonpService.provide(Weather.getCurrentConditions, "currentConditions", res);
 });
 
-app.get('/weather/forecast.json', function(req, res) {
+app.get('/weather/forecast.jsonp', function(req, res) {
   jsonpService.provide(Weather.getTodaysForecast, "todaysForecast", res);
 });
 
-app.get('/background.json', function(req, res) {
+app.get('/background.jsonp', function(req, res) {
   jsonpService.provide(WallpaperBackgrounds.getRandomBackgroundUrl, "imageUrl", res);
 });
 
-app.get('/puppy.json', function(req, res) {
+app.get('/puppy.jsonp', function(req, res) {
   jsonpService.provide(PuppyGiphy.getRandomGifUrl, "imageUrl", res);
 });
 

@@ -4,7 +4,7 @@ $(function() {
 	var updateMoviesCache = function(callback) {
 		console.log("Updating movie cache: " + new Date());
 		$.ajax({
-	        url: "http://localhost:8082/movies.json",
+	        url: "http://localhost:8082/movies.jsonp",
 	        dataType: 'jsonp',
 	        success: function(responseData) {
 	        	if (responseData.error) {console.error(responseData.error); return; }

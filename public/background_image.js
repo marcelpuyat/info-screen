@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	var updateBackground = function() {
 	    $.ajax({
-	        url: 'http://localhost:8082/background.json',
+	        url: 'http://localhost:8082/background.jsonp',
 	        dataType: 'jsonp',
 	        type: 'GET',
 	        jsonp: 'callback',
