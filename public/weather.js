@@ -33,7 +33,6 @@ $(document).ready(function() {
 	        url: 'http://localhost:8082/weather/forecast.jsonp',
 	        dataType: 'jsonp',
 	        success: function(responseData) {
-	        	console.dir(responseData);
 	        	if (responseData.error) {console.error(responseData.error); return; }
 	            cachedData.windMph = responseData.todaysForecast.windMph;
 	            cachedData.high = responseData.todaysForecast.high;
@@ -51,7 +50,6 @@ $(document).ready(function() {
 	    	url: 'http://localhost:8082/weather/conditions.jsonp',
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
-	        	console.dir(responseData);
 	        	if (responseData.error) {console.error(responseData.error); return; }
 	        	cachedData.currTemp = responseData.currentConditions.currTemp;
 	        	cachedData.conditionsIcon = responseData.currentConditions.conditionsIcon;

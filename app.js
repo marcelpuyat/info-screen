@@ -69,22 +69,14 @@ var PuppyGiphy = require('./services/PuppyGiphy');
 var WallpaperBackgrounds = require('./services/WallpaperBackgrounds');
 var Weather = require('./services/Weather');
 
-app.get('/weather/conditions.jsonp', function(req, res) {
-  jsonpService.provide(Weather.getCurrentConditions, "currentConditions", res);
-});
+addJsonpRoute('/weather/conditions.jsonp', Weather.getCurrentConditions, "currentConditions");
+addJsonpRoute('/weather/forecast.jsonp', Weather.getTodaysForecast, "todaysForecast");
+addJsonpRoute('/background.jsonp', WallpaperBackgrounds.getRandomBackgroundUrl, "imageUrl");
+addJsonpRoute('/puppy.jsonp', PuppyGiphy.getRandomGifUrl, "imageUrl");
+addJsonpRoute('/movies.jsonp', RottenTomatoes.getMovieData, "movies");
 
-app.get('/weather/forecast.jsonp', function(req, res) {
-  jsonpService.provide(Weather.getTodaysForecast, "todaysForecast", res);
-});
-
-app.get('/background.jsonp', function(req, res) {
-  jsonpService.provide(WallpaperBackgrounds.getRandomBackgroundUrl, "imageUrl", res);
-});
-
-app.get('/puppy.jsonp', function(req, res) {
-  jsonpService.provide(PuppyGiphy.getRandomGifUrl, "imageUrl", res);
-});
-
-app.get('/movies.jsonp', function(req, res) {
-  jsonpService.provide(RottenTomatoes.getMovieData, "movies", res);
-});
+function addJsonpRoute(route, serviceFn, responseObjName) {
+  app.get(route, function(req, res) {
+    jsonpService.provide(serviceFn, responseObjName, res);
+  });
+}
