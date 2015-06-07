@@ -1,22 +1,9 @@
-var util = require('util');
-var request = require('request');
-var fs = require('fs');
-
-var express  = require('express');
-var port = 8082;
-
-/* Services */
-var jsonpService = require('./services/jsonpService');
-var RottenTomatoes = require('./services/RottenTomatoes');
-var PuppyGiphy = require('./services/PuppyGiphy');
-var WallpaperBackgrounds = require('./services/WallpaperBackgrounds');
-var Weather = require('./services/Weather');
-
 /*
   ===========================================================================
             Setup Chromium to restart (to prevent OOM crashes)
   ===========================================================================
 */
+var fs = require('fs');
 try {
   if (fs.lstatSync('/usr/bin/chromium').isFile()) {
     var exec = require('child_process').exec;
@@ -46,6 +33,8 @@ function printNoChromiumWarning() {
             Setup express server
   ===========================================================================
 */
+var express  = require('express');
+var port = 8082;
 var app = express();
 
 app.configure(function() {
@@ -73,6 +62,13 @@ app.get('/', function(req, res){
             JSONP endpoints for front-end to call
   ===========================================================================
 */
+
+var jsonpService = require('./services/jsonpService');
+var RottenTomatoes = require('./services/RottenTomatoes');
+var PuppyGiphy = require('./services/PuppyGiphy');
+var WallpaperBackgrounds = require('./services/WallpaperBackgrounds');
+var Weather = require('./services/Weather');
+
 app.get('/weather/conditions.jsonp', function(req, res) {
   jsonpService.provide(Weather.getCurrentConditions, "currentConditions", res);
 });
