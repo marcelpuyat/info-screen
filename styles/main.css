@@ -1,5 +1,5 @@
 @font-face {
-	font-family: HelveticaNeue; src: url('/fonts/HelveticaNeue.ttf');
+	font-family: HelveticaNeue; src: url('/assets/fonts/HelveticaNeue.ttf');
 }
 
 
@@ -121,11 +121,3 @@ p, h1, h2, h3, h4, h5 {
 	left: inherit;
 }
 /* End split vertical halves */
-
-/* For background-check */
-
-.background--light {
-	color: rgba(35, 35, 35, 0.85);
-}
-
-/* End background check */

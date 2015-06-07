@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <link rel="stylesheet" href="/styles/date.css"></link>
+        <link rel="stylesheet" href="/styles/weather.css"></link>
+        <link rel="stylesheet" href="/styles/puppy.css"></link>
+        <link rel="stylesheet" href="/styles/movies.css"></link>
+        <link rel="stylesheet" href="/styles/background_image.css"></link>
+
+        <script src="/vendor/jquery-1.11.3.min.js"></script>
+        <script src="/vendor/easings.js"></script>
+        <script src="/javascripts/frontend/background_image.js"></script>
+        <script src="/javascripts/frontend/main.js"></script>
+        <script src="/javascripts/frontend/date.js"></script>
+        <script src="/javascripts/frontend/movies.js"></script>
+        <script src="/javascripts/frontend/puppy.js"></script>
+        <script src="/javascripts/frontend/weather.js"></script>
+
+    </head>
+    <body>
+
+        <div id="left-half-outer">
+            <% include ../partials/date %>
+        </div>
+
+        <div id="right-half-outer">
+            <div id="weather" class="right-half-screen">
+                <% include ../partials/weather %>
+            </div>
+
+            <div id="puppy" class="right-half-screen">
+                <% include ../partials/puppy %>
+            </div>
+
+            <div id="movies" class="right-half-screen">
+                <% include ../partials/movies %>
+            </div>
+        </div>
+
+        <div id="background">
+            <div id="old" class="background" src="/assets/images/first_bg.jpg"></div>
+            <div id="new" class="background"></div>
+        </div>
+
+    </body>
+</html>

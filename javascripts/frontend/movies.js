@@ -23,7 +23,7 @@ $(function() {
 			$(movieBlock).find(".movie-title").text(moviesCache[idx].title);
 			$(movieBlock).find(".genre").text(moviesCache[idx].genres[0]);
 			$(movieBlock).find(".freshness-rating").text(moviesCache[idx].freshness + "%");
-			var tomatoImg = "/images/movies/rotten_tomatoes_" + (parseInt(moviesCache[idx].freshness) < 60 ? 
+			var tomatoImg = "/assets/images/movies/rotten_tomatoes_" + (parseInt(moviesCache[idx].freshness) < 60 ? 
 				"rotten" : "fresh") + ".png";
 			$(movieBlock).find(".tomato-icon").attr("src", tomatoImg);
 			$(movieBlock).find(".audience-rating").text(moviesCache[idx].audienceRating + "%");

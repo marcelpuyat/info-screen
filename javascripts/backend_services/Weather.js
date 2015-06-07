@@ -4,38 +4,38 @@ var city = "Stanford";
 
 // See http://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary
 var conditionsToDayIconMap = {
-	"clear": "/images/weather/clear-day.png",
-	"sunny": "/images/weather/clear-day.png",
-	"rain": "/images/weather/rain.png",
-	"chancerain": "/images/weather/chance-rain-day.png",
-	"snow" : "/images/weather/snow.png",
-	"chanceflurries" : "/images/weather/snow.png",
-	"flurries" : "/images/weather/snow.png",
-	"sleet": "/images/weather/snow.png",
-	"chancesleet": "/images/weather/snow.png",
-	"chancesnow": "/images/weather/snow.png",
-	"wind" : "/images/weather/wind.png",
-	"fog": "/images/weather/fog.png",
-	"hazy": "/images/weather/hazy.png",
-	"cloudy": "/images/weather/cloudy.png",
-	"mostlycloudy": "/images/weather/mostly-cloudy-day.png",
-	"partlycloudy": "/images/weather/partly-cloudy-day.png",
-	"partlysunny": "/images/weather/mostly-cloudy-day.png",
-	"mostlysunny": "/images/weather/mostly-sunny.png",
-	"tstorms": "/images/weather/thunderstorm.png",
-	"chancetstorms": "/images/weather/thunderstorm.png",
-	"hail": "/images/weather/snow.png",
-	"tornado": "/images/weather/wind.png",
-	"unknown": "/images/weather/na.png",
-	"default": "/images/weather/na.png"
+	"clear": "/assets/images/weather/clear-day.png",
+	"sunny": "/assets/images/weather/clear-day.png",
+	"rain": "/assets/images/weather/rain.png",
+	"chancerain": "/assets/images/weather/chance-rain-day.png",
+	"snow" : "/assets/images/weather/snow.png",
+	"chanceflurries" : "/assets/images/weather/snow.png",
+	"flurries" : "/assets/images/weather/snow.png",
+	"sleet": "/assets/images/weather/snow.png",
+	"chancesleet": "/assets/images/weather/snow.png",
+	"chancesnow": "/assets/images/weather/snow.png",
+	"wind" : "/assets/images/weather/wind.png",
+	"fog": "/assets/images/weather/fog.png",
+	"hazy": "/assets/images/weather/hazy.png",
+	"cloudy": "/assets/images/weather/cloudy.png",
+	"mostlycloudy": "/assets/images/weather/mostly-cloudy-day.png",
+	"partlycloudy": "/assets/images/weather/partly-cloudy-day.png",
+	"partlysunny": "/assets/images/weather/mostly-cloudy-day.png",
+	"mostlysunny": "/assets/images/weather/mostly-sunny.png",
+	"tstorms": "/assets/images/weather/thunderstorm.png",
+	"chancetstorms": "/assets/images/weather/thunderstorm.png",
+	"hail": "/assets/images/weather/snow.png",
+	"tornado": "/assets/images/weather/wind.png",
+	"unknown": "/assets/images/weather/na.png",
+	"default": "/assets/images/weather/na.png"
 };
 
 var nightTimeVersionOfIcon = {
-	"/images/weather/clear-day.png": "/images/weather/clear-night.png",
-	"/images/weather/partly-cloudy-day.png": "/images/weather/partly-cloudy-night.png",
-	"/images/weather/mostly-cloudy-day.png": "/images/weather/mostly-cloudy-night.png",
-	"/images/weather/chance-rain-day.png": "/images/weather/chance-rain-night.png",
-	"/images/weather/chance-tstorms-day.png": "/images/weather/chance-tstorms-night.png"
+	"/assets/images/weather/clear-day.png": "/assets/images/weather/clear-night.png",
+	"/assets/images/weather/partly-cloudy-day.png": "/assets/images/weather/partly-cloudy-night.png",
+	"/assets/images/weather/mostly-cloudy-day.png": "/assets/images/weather/mostly-cloudy-night.png",
+	"/assets/images/weather/chance-rain-day.png": "/assets/images/weather/chance-rain-night.png",
+	"/assets/images/weather/chance-tstorms-day.png": "/assets/images/weather/chance-tstorms-night.png"
 };
 
 function getIconForConditions(conditions) {
