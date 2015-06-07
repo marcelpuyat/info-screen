@@ -26,8 +26,8 @@ try {
     console.error("\tError: " + err);
 }
 function printNoChromiumWarning() {
-    console.log("WARNING: Could not find Chromium at /usr/bin/chromium."
-        +" Will be vulnerable to OOM crashes.");
+    console.log("WARNING: Could not find Chromium at /usr/bin/chromium."+
+        " Will be vulnerable to OOM crashes.");
 }
 
 /*

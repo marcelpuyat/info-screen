@@ -18,5 +18,5 @@ module.exports.getRandomBackgroundUrl = function(callbacks) {
                 callbacks.error(jsonErr);
             }
         }
-        );
+    );
 };
