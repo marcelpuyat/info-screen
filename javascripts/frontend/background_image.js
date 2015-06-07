@@ -12,6 +12,7 @@ $(document).ready(function() {
 	        type: 'GET',
 	        jsonp: 'callback',
 	        success: function(responseData) {
+	        	if (responseData.error) { console.error(responseData.error); return; }
 	        	document.getElementById('new').style.backgroundImage = "url("+responseData.imageUrl+")";
 
 	        	setTimeout(function() {
@@ -24,7 +25,7 @@ $(document).ready(function() {
 	        	}, bufferTime);
 	        }
 	    });
-	}
+	};
 
 	updateBackground();
 
