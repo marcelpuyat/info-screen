@@ -61,11 +61,14 @@ app.get('/', function(req, res){
 JSONP endpoints for front-end to call
 ===========================================================================
 */
-var relativeServicesPath = "javascripts/backend_services/";
-var RottenTomatoes = require('./'+relativeServicesPath+'RottenTomatoes');
-var PuppyGiphy = require('./'+relativeServicesPath+'PuppyGiphy');
-var WallpaperBackgrounds = require('./'+relativeServicesPath+'WallpaperBackgrounds');
-var Weather = require('./'+relativeServicesPath+'Weather');
+
+function requireService(serviceName) {
+    return require('./javascripts/backend_services/'+serviceName);
+}
+var RottenTomatoes = requireService('RottenTomatoes');
+var PuppyGiphy = requireService('PuppyGiphy');
+var WallpaperBackgrounds = requireService('WallpaperBackgrounds');
+var Weather = requireService('Weather');
 
 addJsonpRoute('/weather/conditions.jsonp', Weather.getCurrentConditions, "currentConditions");
 addJsonpRoute('/weather/forecast.jsonp', Weather.getTodaysForecast, "todaysForecast");
