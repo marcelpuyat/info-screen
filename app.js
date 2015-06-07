@@ -63,7 +63,6 @@ app.get('/', function(req, res){
   ===========================================================================
 */
 
-var jsonpService = require('./services/jsonpService');
 var RottenTomatoes = require('./services/RottenTomatoes');
 var PuppyGiphy = require('./services/PuppyGiphy');
 var WallpaperBackgrounds = require('./services/WallpaperBackgrounds');
@@ -75,8 +74,17 @@ addJsonpRoute('/background.jsonp', WallpaperBackgrounds.getRandomBackgroundUrl, 
 addJsonpRoute('/puppy.jsonp', PuppyGiphy.getRandomGifUrl, "imageUrl");
 addJsonpRoute('/movies.jsonp', RottenTomatoes.getMovieData, "movies");
 
-function addJsonpRoute(route, serviceFn, responseObjName) {
+function addJsonpRoute(route, serviceFn, resultObjName) {
   app.get(route, function(req, res) {
-    jsonpService.provide(serviceFn, responseObjName, res);
+    serviceFn({
+      success: function(result) {
+        var resultObj = {};
+        resultObj[resultObjName] = result;
+        res.jsonp(resultObj);
+      },
+      error: function(err) {
+        res.jsonp({error: err});
+      }
+    });
   });
 }
