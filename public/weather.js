@@ -1,44 +1,6 @@
 $(document).ready(function() {
-	var state = "CA";
-	var city = "Stanford";
 	var minsPerForecastCall = 10;
 	var minsPerCurrTempCall = 5;
-
-	// See http://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary
-	var conditionsToDayIconMap = {
-		"clear": "/images/weather/clear-day.png",
-		"sunny": "/images/weather/clear-day.png",
-		"rain": "/images/weather/rain.png",
-		"chancerain": "/images/weather/chance-rain-day.png",
-		"snow" : "/images/weather/snow.png",
-		"chanceflurries" : "/images/weather/snow.png",
-		"flurries" : "/images/weather/snow.png",
-		"sleet": "/images/weather/snow.png",
-		"chancesleet": "/images/weather/snow.png",
-		"chancesnow": "/images/weather/snow.png",
-		"wind" : "/images/weather/wind.png",
-		"fog": "/images/weather/fog.png",
-		"hazy": "/images/weather/hazy.png",
-		"cloudy": "/images/weather/cloudy.png",
-		"mostlycloudy": "/images/weather/mostly-cloudy-day.png",
-		"partlycloudy": "/images/weather/partly-cloudy-day.png",
-		"partlysunny": "/images/weather/mostly-cloudy-day.png",
-		"mostlysunny": "/images/weather/mostly-sunny.png",
-		"tstorms": "/images/weather/thunderstorm.png",
-		"chancetstorms": "/images/weather/thunderstorm.png",
-		"hail": "/images/weather/snow.png",
-		"tornado": "/images/weather/wind.png",
-		"unknown": "/images/weather/na.png",
-		"default": "/images/weather/na.png"
-	};
-
-	var nightTimeVersionOfIcon = {
-		"/images/weather/clear-day.png": "/images/weather/clear-night.png",
-		"/images/weather/partly-cloudy-day.png": "/images/weather/partly-cloudy-night.png",
-		"/images/weather/mostly-cloudy-day.png": "/images/weather/mostly-cloudy-night.png",
-		"/images/weather/chance-rain-day.png": "/images/weather/chance-rain-night.png",
-		"/images/weather/chance-tstorms-day.png": "/images/weather/chance-tstorms-night.png"
-	};
 
 	// Ajax calls only modify the cache. Then we use the cache to populate DOM when the
 	// temperature page is added to the DOM
@@ -68,16 +30,15 @@ $(document).ready(function() {
 
 	var updateForecastData = function(callback) {
 		$.ajax({
-	        url: 'http://api.wunderground.com/api/95e93303e496f7c9/forecast/q/'+state+'/'+encodeURIComponent(city)+'/.json',
+	        url: 'http://localhost:8082/weather/forecast.json',
 	        dataType: 'jsonp',
 	        success: function(responseData) {
-	            var forecastObject = responseData.forecast.simpleforecast.forecastday[0];
-	            if (!forecastObject) return;
-	            cachedData.windMph = forecastObject.avewind.mph;
-	            cachedData.high = forecastObject.high.fahrenheit;
-	            cachedData.low = forecastObject.low.fahrenheit;
-	            cachedData.icon = forecastObject.icon_url;
-	            cachedData.probOfRain = forecastObject.pop;
+	        	console.dir(responseData);
+	        	if (responseData.error) {console.error(responseData.error); return; }
+	            cachedData.windMph = responseData.todaysForecast.windMph;
+	            cachedData.high = responseData.todaysForecast.high;
+	            cachedData.low = responseData.todaysForecast.low;
+	            cachedData.probOfRain = responseData.todaysForecast.probOfRain;
 	            if (callback) {
 	            	callback();
 	            }
@@ -86,15 +47,14 @@ $(document).ready(function() {
 	};
 
 	var updateCurrTemp = function(callback) {
-		var wundergroundDone = false;
-		var forecastIoDone = false;
 		$.ajax({
-	    	url: 'http://api.wunderground.com/api/95e93303e496f7c9/conditions/q/'+state+'/'+encodeURIComponent(city)+'.json',
+	    	url: 'http://localhost:8082/weather/conditions.json',
 	    	dataType: 'jsonp',
 	        success: function(responseData) {
-	        	if (! responseData.current_observation) return;
-	        	cachedData.currTemp = responseData.current_observation.feelslike_f;
-	        	cachedData.conditions = responseData.current_observation.icon;
+	        	console.dir(responseData);
+	        	if (responseData.error) {console.error(responseData.error); return; }
+	        	cachedData.currTemp = responseData.currentConditions.currTemp;
+	        	cachedData.conditionsIcon = responseData.currentConditions.conditionsIcon;
 	        	if (callback) {
 	        		callback();
 	        	}
@@ -111,39 +71,29 @@ $(document).ready(function() {
         $("#chance-of-rain-text").text(cachedData.probOfRain + "% ");
         var rainText = $('<span />').attr('class', 'small-weather-label').html('rain');
         $("#chance-of-rain-text").append(rainText);
-        var imgSrc = getIconForConditions(cachedData.conditions);
-        $("#conditions-icon").attr("src", imgSrc);
+        $("#conditions-icon").attr("src", cachedData.conditionsIcon);
         $("#current-temp-text").html(Math.floor(cachedData.currTemp) + "<span class='big-degree'>\xB0</span>");
         updateTemperatureColors();
 	};
 
-	// if (_isMultipage) {
-	// 	// Update elem values when weather window is inserted
-	// 	$(document).on('DOMNodeInserted', function(e) {
-	// 	    if (e.target.id == 'weather') {
-	// 	    	updateDisplay();
-	// 	    }
-	// 	});
+	if (_isMultipage) {
+		// Update elem values when weather window is inserted
+		$(document).on('DOMNodeInserted', function(e) {
+		    if (e.target.id == 'weather') {
+		    	updateDisplay();
+		    }
+		});
 
-	// 	// Only ajax calls are on time interval (not the display updating.)
-	// 	setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
-	// 	setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
-	// } else {
-	// 	// Single page. Update display on time interval
-	// 	setInterval(updateDisplayAfterAllAjax, 1000 * 60 * minsPerForecastCall);
-	// }
+		// Only ajax calls are on time interval (not the display updating.)
+		setInterval(updateForecastData, 1000 * 60 * minsPerForecastCall);
+		setInterval(updateCurrTemp, 1000 * 60 * minsPerCurrTempCall);
+	} else {
+		// Single page. Update display on time interval
+		setInterval(updateDisplayAfterAllAjax, 1000 * 60 * minsPerForecastCall);
+	}
 
 	// First update
 	updateDisplayAfterAllAjax();
-
-	function getIconForConditions(conditions) {
-		var defaultIcon = conditionsToDayIconMap[conditions];
-		var currHour = new Date().getHours();
-		if (nightTimeVersionOfIcon[defaultIcon] && (currHour < 5 || currHour > 19)) {
-			return nightTimeVersionOfIcon[defaultIcon];
-		}
-		return defaultIcon;
-	}
 
 	function updateDisplayAfterAllAjax() {
 		var forecastUpdateDone = false;
