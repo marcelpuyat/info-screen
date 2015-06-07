@@ -89,6 +89,6 @@ app.get('/puppy.jsonp', function(req, res) {
   jsonpService.provide(PuppyGiphy.getRandomGifUrl, "imageUrl", res);
 });
 
-app.get('/movies.json', function(req, res) {
+app.get('/movies.jsonp', function(req, res) {
   jsonpService.provide(RottenTomatoes.getMovieData, "movies", res);
 });
