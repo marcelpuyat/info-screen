@@ -1,4 +1,5 @@
 var path = require('path');
+var port = 8082;
 /*
 ===========================================================================
 Setup Chromium to restart (to prevent OOM crashes)
@@ -36,7 +37,6 @@ Setup express server
 ===========================================================================
 */
 var express  = require('express');
-var port = 8082;
 var app = express();
 
 app.use(express.cookieParser());
