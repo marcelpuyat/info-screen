@@ -1,0 +1,40 @@
+{
+  "name": "info-screen",
+  "version": "0.4.4",
+  "description": "Screensaver-like functionality with constant updating information, such as weather, trending movies, etc. Intended to be run on a Raspberry Pi on Chromium, displaying on a monitor 24/7.",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "app-root-path": "^1.0.0",
+    "needle": "^0.9.2",
+    "express": "^3.3.0",
+    "ejs": "^2.3.1",
+    "crawler": "^0.4.3",
+    "valid-url": "^1.0.9",
+    "request": "^2.57.0",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcelpuyat/info-screen.git"
+  },
+  "keywords": [
+    "raspberrypi",
+    "rpi",
+    "screensaver"
+  ],
+  "author": "Marcel Puyat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelpuyat/info-screen/issues"
+  },
+  "homepage": "https://github.com/marcelpuyat/info-screen"
+}
