@@ -1,35 +1,4 @@
-var path = require('path');
 var port = 8082;
-/*
-===========================================================================
-Setup Chromium to restart (to prevent OOM crashes)
-===========================================================================
-*/
-var fs = require('fs');
-
-try {
-    if (fs.lstatSync('/usr/bin/chromium').isFile()) {
-        var exec = require('child_process').exec;
-        console.log("Starting Chromium");
-        exec('chromium --kiosk localhost:'+port);
-        setInterval(function() {
-            console.log("Killing Chromium");
-            exec('killall chromium', function() {
-                console.log("Restarting Chromium");
-                exec('chromium --kiosk localhost:'+port);
-            });
-        }, 1000 * 60 * 60);
-    } else {
-        printNoChromiumWarning();
-    }
-} catch(err) {
-    printNoChromiumWarning();
-    console.error("\tError: " + err);
-}
-function printNoChromiumWarning() {
-    console.log("WARNING: Could not find Chromium at /usr/bin/chromium."+
-        " Will be vulnerable to OOM crashes.");
-}
 
 /*
 ===========================================================================
@@ -51,6 +20,7 @@ app.set('views', require('path').join(__dirname, 'views'));
 app.set('view engine', 'ejs');  
 
 app.listen(port);
+console.log("Listening on port: " + port);
 
 app.get('/', function(req, res){
     res.render("layouts/main");
@@ -89,4 +59,37 @@ function addJsonpRoute(route, serviceFn, resultObjName) {
             }
         });
     });
+}
+
+/*
+===========================================================================
+Setup Chromium to restart (to prevent OOM crashes)
+===========================================================================
+*/
+var fs = require('fs');
+
+try {
+    if (fs.lstatSync('/usr/bin/chromium').isFile()) {
+        var exec = require('child_process').exec;
+        console.log("Starting Chromium");
+        exec('chromium --kiosk localhost:'+port);
+        setInterval(function() {
+            console.log("Killing Chromium");
+            exec('killall chromium', function() {
+                console.log("Restarting Chromium");
+                exec('chromium --kiosk localhost:'+port);
+            });
+        }, 1000 * 60 * 60);
+    } else {
+        printNoChromiumWarning("/usr/bin/chrome is not a valid file");
+    }
+} catch(err) {
+    printNoChromiumWarning(err);
+}
+
+function printNoChromiumWarning(error) {
+    console.error(error);
+    console.log("WARNING: Could not find Chromium at /usr/bin/chromium."+
+        " Will be vulnerable to OOM crashes.");
+    console.log("Visit localhost:"+port+" on your choice of browser");
 }

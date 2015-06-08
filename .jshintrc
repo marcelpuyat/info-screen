@@ -5,6 +5,9 @@
 	    "_newDayListeners": false,
 	    "require": false,
 	    "__dirname": false,
-	    "module": false
+	    "module": false,
+	    "describe": false,
+	    "before": false,
+	    "it": false
 	}
 }
