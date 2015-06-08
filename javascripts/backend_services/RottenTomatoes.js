@@ -1,6 +1,7 @@
 var Crawler = require("crawler");
 var rottenTomatoesUrl = "http://www.rottentomatoes.com";
 var numMoviesToGet = 3;
+module.exports.numMoviesToGet = 3;
 
 module.exports.getMovieData = function(callbacks) {
 	var moviePathToTitleMap = {};
@@ -42,6 +43,7 @@ module.exports.getMovieData = function(callbacks) {
 					newMovieData.posterUrl = imgSrc;
 				});
 			} catch(jsonErr) {
+				console.log("Error");
 				callbacks.error(jsonErr);
 			}
 		},
@@ -53,16 +55,18 @@ module.exports.getMovieData = function(callbacks) {
 	var topMovies = new Crawler({
 	  maxConnections : 1,
 
-	  callback: function (error, result, $) {
-	  	if (error) { callbacks.error(error); return; }
-	    $('#Top-Box-Office a').each(function(index, aTag) {
-	    	if (index < numMoviesToGet) {
-	    		var movieTitle = aTag.children[0].data; // Depends on RottenTomatoes a tags using relative paths 
-	    		moviePathToTitleMap[aTag.attribs.href] = movieTitle;
-	    		movieCrawler.queue(rottenTomatoesUrl + aTag.attribs.href);
-	    	}
-	    });
-	  }
+		callback: function (error, result, $) {
+			if (error) { callbacks.error(error); return; }
+			$('#Top-Box-Office a').each(function(index, aTag) {
+				if (index < numMoviesToGet) {
+					var movieTitle = aTag.children[0].data; // Depends on RottenTomatoes a tags using relative paths 
+					moviePathToTitleMap[aTag.attribs.href] = movieTitle;
+					movieCrawler.queue(rottenTomatoesUrl + aTag.attribs.href);
+				}
+			});
+	  	},
+		onDrain: function() {
+		}
 	});
 
 	topMovies.queue(rottenTomatoesUrl);
