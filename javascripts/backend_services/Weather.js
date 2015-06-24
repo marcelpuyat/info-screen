@@ -1,6 +1,6 @@
 var request = require('request');
 var state = "CA";
-var city = "Stanford";
+var city = "San Mateo";
 
 // See http://www.wunderground.com/weather/api/d/docs?d=resources/phrase-glossary
 var conditionsToDayIconMap = {

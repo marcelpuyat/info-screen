@@ -1,4 +1,34 @@
 var port = 8082;
+var exec = require('child_process').exec;
+/*
+===========================================================================
+Turn off monitor at night
+*/
+var numMillisInDay = 1000 * 60 * 60 * 24;
+var turnOffMonitor = function() {
+    exec("tvservice -o"); 
+};
+var turnOnMonitor = function() {
+    exec('tvservice --explicit="CEA 16 HDMI"'); 
+    exec('fbset -depth 8');
+    exec('fbset -g 1920 1080 1920 1080 16');
+};
+var turnOffMonitorAtNight = function() {
+    var currDate = new Date();
+    var numMillisTilStartOfNextDay = numMillisInDay - (
+        currDate.getHours() * 1000 * 60 * 60 +
+        currDate.getMinutes() * 1000 * 60 +
+        currDate.getSeconds() * 1000 +
+        currDate.getMilliseconds()); 
+    setTimeout(function() {
+        turnOffMonitor();
+        setTimeout(function() {
+            turnOnMonitor();
+            turnOffMonitorAtNight();
+        }, 1000 * 60 * 8); // 8AM
+    }, numMillisTilStartOfNextDay);
+};
+turnOffMonitorAtNight();
 
 /*
 ===========================================================================
@@ -70,7 +100,6 @@ var fs = require('fs');
 
 try {
     if (fs.lstatSync('/usr/bin/chromium').isFile()) {
-        var exec = require('child_process').exec;
         console.log("Starting Chromium");
         exec('chromium --kiosk localhost:'+port);
         setInterval(function() {
