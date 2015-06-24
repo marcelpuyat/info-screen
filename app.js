@@ -108,7 +108,7 @@ try {
                 console.log("Restarting Chromium");
                 exec('chromium --kiosk localhost:'+port);
             });
-        }, 1000 * 60 * 60);
+        }, 1000 * 60 * 25);
     } else {
         printNoChromiumWarning("/usr/bin/chrome is not a valid file");
     }
